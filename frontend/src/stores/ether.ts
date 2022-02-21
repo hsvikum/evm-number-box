@@ -17,7 +17,7 @@ const getSignerInstance = () => {
 }
 
 const getProviderInstance = () => {
-    const { ethereum } = window;
+    const { ethereum } = window as any;
     if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         return provider;
@@ -98,7 +98,7 @@ export const useEtherStore = defineStore('ether',{
         }
     },
     async connectWallet(silent: boolean = false) {
-        const { ethereum } = window;
+        const { ethereum } = window as any;
         this.loading = true;
         try {
             if (!ethereum) {
