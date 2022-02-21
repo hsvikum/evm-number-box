@@ -12,6 +12,13 @@ contract MessageBox {
       uint timestamp;
     }
 
+    event MessageAdded(
+        uint index,
+        string content,
+        address author,
+        uint timestamp
+    );
+
     uint public messageCounter = 0;
     mapping(uint => Message) public messages;
 
@@ -32,7 +39,8 @@ contract MessageBox {
     }
 
     function addMessage(string memory _content) public {
-        messages[messageCounter] = Message(_content, msg.sender, block.timestamp);
+        messages[messageCounter] = Message(messageCounter, _content, msg.sender, block.timestamp);
+        emit MessageAdded(messageCounter, _content, msg.sender, block.timestamp);
         messageCounter++;
     }
 }

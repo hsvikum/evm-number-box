@@ -4,12 +4,14 @@ import { RouterView } from 'vue-router';
 
 import { storeToRefs } from "pinia";
 import { useEtherStore } from "./stores/ether";
-const { connectWallet } = useEtherStore();
+import { inject, onMounted } from 'vue'
+const { connectWallet, setupNotifications } = useEtherStore();
 const { account } = storeToRefs(useEtherStore());
-import { onMounted } from 'vue'
 
 onMounted(() => {
   connectWallet(true);
+  const toast = inject('toast');
+  setupNotifications(toast);
 })
 
 </script>
