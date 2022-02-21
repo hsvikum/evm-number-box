@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 import { ethers } from "ethers";
 import contractABI from "../../artifacts/contracts/MessageBox.sol/MessageBox.json"
-const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
-const targetChainId = 31337;
+import contractMetaData from "../../artifacts/contractMetaData.json";
+
+const contractAddress = contractMetaData.address;
+const targetChainId = contractMetaData.chainId;
 
 const getContractInstance = async () => {
     const signer = getSignerInstance()
