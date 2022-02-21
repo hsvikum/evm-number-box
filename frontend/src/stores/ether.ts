@@ -116,7 +116,7 @@ export const useEtherStore = defineStore('ether',{
             if (chainId != targetChainId) {
                 await ethereum.request({
                     method: "wallet_switchEthereumChain",
-                    params: [{ chainId: ethers.utils.hexlify(targetChainId) }]
+                    params: [{ chainId: ethers.utils.hexStripZeros(ethers.utils.hexlify(targetChainId)) }]
                 });
             } else {
                 if (accounts.length) {
