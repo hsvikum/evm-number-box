@@ -1,11 +1,9 @@
 //SPDX-License-Identifier: ISC
 pragma solidity ^0.8.4;
 
-import "hardhat/console.sol";
-
 contract MessageBox {
 
-    struct Message { 
+    struct Message {
       uint index; 
       string content;
       address author;
