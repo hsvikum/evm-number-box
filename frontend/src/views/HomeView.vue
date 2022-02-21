@@ -7,11 +7,8 @@ import { storeToRefs } from "pinia";
 import { useEtherStore } from "../stores/ether";
 import { computed } from "vue";
 
-const { messages, chainId, account } = storeToRefs(useEtherStore());
+const { messages, chainId, account, canInteract } = storeToRefs(useEtherStore());
 
-const canInteract = computed(() => {
-  return (chainId.value === 3 || chainId.value == 31337) && account.value !== "";
-})
 </script>
 
 <template>

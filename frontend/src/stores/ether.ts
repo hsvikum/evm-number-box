@@ -55,6 +55,9 @@ export const useEtherStore = defineStore('ether',{
     messages: [],
     chainId: 0
   }),
+  getters: {
+    canInteract: (state) => (state.chainId == targetChainId && state.account !== ""),
+  },
   actions: {
     async getAllMessages() {
         this.loading = true;
