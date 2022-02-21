@@ -131,8 +131,9 @@ export const useEtherStore = defineStore('ether',{
     },
     async setupNotifications(toast: any) {
         const messageBoxContract = await getContractInstance();
-        messageBoxContract.on("MessageAdded", (_index, content, author) => {
+        messageBoxContract.on("MessageAdded", async (_index, content, author) => {
             toast.success(`${smartTrim(author, 10)} said ${truncateString(content, 20)}`)
+            await this.getAllMessages()
         }); 
     }
 }
