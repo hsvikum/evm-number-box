@@ -6,6 +6,7 @@ import "hardhat/console.sol";
 contract MessageBox {
 
     struct Message { 
+      uint index; 
       string content;
       address author;
       uint timestamp;

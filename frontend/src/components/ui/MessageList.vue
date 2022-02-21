@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(message, index) in sortedMessages" :key="index">
+            <tr v-for="message in sortedMessages" :key="message.index">
               <td>{{ formatTimeStamp(message.timestamp) }}</td>
               <td class="whitespace-normal">{{ message.content }}</td>
               <td>{{ message.author }}</td>
@@ -40,7 +40,7 @@ const props = defineProps<Iprops>();
 
 const sortedMessages = computed(() => {
   return [...props.messages].sort((a, b) => {
-    return b.timestamp - a.timestamp;
+    return b.index - a.index;
   });
 });
 </script>
