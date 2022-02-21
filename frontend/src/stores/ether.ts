@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ethers } from "ethers";
 import contractABI from "../../artifacts/contracts/MessageBox.sol/MessageBox.json"
 const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+const targetChainId = 31337;
 
 const getContractInstance = async () => {
     const signer = getSignerInstance()
@@ -89,8 +90,6 @@ export const useEtherStore = defineStore('ether',{
         try {
             const signer = getSignerInstance()
             this.account = await signer.getAddress();
-            const { chainId } = await getProviderInstance().getNetwork();
-            this.chainId = chainId;
             await this.getAllMessages();
         } catch (e) {
             console.error(e);
@@ -109,9 +108,20 @@ export const useEtherStore = defineStore('ether',{
                 return;
             }
             const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-
-            if (accounts.length) {
-                await this.getAccount();
+            ethereum.on('chainChanged', () => {
+                window.location.reload();
+            });
+            const { chainId } = await await getProviderInstance().getNetwork();
+            this.chainId = chainId;
+            if (chainId != targetChainId) {
+                await ethereum.request({
+                    method: "wallet_switchEthereumChain",
+                    params: [{ chainId: ethers.utils.hexlify(targetChainId) }]
+                });
+            } else {
+                if (accounts.length) {
+                    await this.getAccount();
+                }
             }
         } catch (e) {
             console.error(e);
