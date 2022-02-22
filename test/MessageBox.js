@@ -16,6 +16,7 @@ describe("MessageBox", function () {
     expect(await messageBox.messageCounter()).to.equal(1);
 
     const message = await messageBox.getMessage(0);
+    expect(message).to.have.property('index').equal(ethers.BigNumber.from(0));
     expect(message).to.have.property('content', "Hello, World!. This is a simple message box.");
     expect(message).to.have.property('author', deployer.address);
     expect(message).to.have.property('timestamp').and.to.not.be.null;
@@ -30,6 +31,7 @@ describe("MessageBox", function () {
 
     expect(await messageBox.messageCounter()).to.equal(2);
     const message = await messageBox.getMessage(1);
+    expect(message).to.have.property('index').equal(ethers.BigNumber.from(1));
     expect(message).to.have.property('content', "Second Message.");
     expect(message).to.have.property('author', anotherAccount.address);
     expect(message).to.have.property('timestamp').and.to.not.be.null;
@@ -46,14 +48,17 @@ describe("MessageBox", function () {
     const messages = await messageBox.getAllMessages();
 
     expect(messages).to.have.a.lengthOf(3);
+    expect(messages[0]).to.have.property('index').equal(ethers.BigNumber.from(0));
     expect(messages[0]).to.have.property('content', "Hello, World!. This is a simple message box.");
     expect(messages[0]).to.have.property('author', deployer.address);
     expect(messages[0]).to.have.property('timestamp').and.to.not.be.null;
 
+    expect(messages[1]).to.have.property('index').equal(ethers.BigNumber.from(1));
     expect(messages[1]).to.have.property('content', "Second Message.");
     expect(messages[1]).to.have.property('author', deployer.address);
     expect(messages[1]).to.have.property('timestamp').and.to.not.be.null;
 
+    expect(messages[2]).to.have.property('index').equal(ethers.BigNumber.from(2));
     expect(messages[2]).to.have.property('content', "Third Message.");
     expect(messages[2]).to.have.property('author', anotherAccount.address);
     expect(messages[2]).to.have.property('timestamp').and.to.not.be.null;
