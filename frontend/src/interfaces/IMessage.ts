@@ -1,6 +1,6 @@
 export default interface IMessage {
   index: number;
   timestamp: number;
-  content: string;
+  content: number;
   author: string;
 }

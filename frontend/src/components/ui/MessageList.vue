@@ -1,13 +1,13 @@
 <template>
   <div class="card w-auto bg-neutral text-neutral-content mt-12">
     <div class="card-body items-center text-center">
-      <h2 class="card-title">Messages</h2>
+      <h2 class="card-title">Numbers</h2>
       <div class="overflow-x-auto">
         <table class="table table-compact w-full" v-if="props.messages.length">
           <thead>
             <tr>
               <th>Posted On</th>
-              <th>Message</th>
+              <th>Number</th>
               <th>Author</th>
             </tr>
           </thead>
@@ -19,7 +19,7 @@
             </tr>
           </tbody>
         </table>
-        <p v-else>No Messages Yet 🤷‍♂️</p>
+        <p v-else>No Numbers Yet 🤷‍♂️</p>
       </div>
     </div>
   </div>

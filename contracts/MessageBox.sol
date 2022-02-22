@@ -5,14 +5,14 @@ contract MessageBox {
 
     struct Message {
       uint index; 
-      string content;
+      uint content;
       address author;
       uint timestamp;
     }
 
     event MessageAdded(
         uint index,
-        string content,
+        uint content,
         address author,
         uint timestamp
     );
@@ -20,7 +20,7 @@ contract MessageBox {
     uint public messageCounter = 0;
     mapping(uint => Message) public messages;
 
-    constructor(string memory _firstMessageContent) {
+    constructor(uint _firstMessageContent) {
         addMessage(_firstMessageContent);
     }
 
@@ -36,7 +36,7 @@ contract MessageBox {
         return messageArray;
     }
 
-    function addMessage(string memory _content) public {
+    function addMessage(uint _content) public {
         messages[messageCounter] = Message(messageCounter, _content, msg.sender, block.timestamp);
         emit MessageAdded(messageCounter, _content, msg.sender, block.timestamp);
         messageCounter++;

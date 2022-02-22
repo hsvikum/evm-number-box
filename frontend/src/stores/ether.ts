@@ -28,28 +28,6 @@ const getProviderInstance = () => {
     }
 }
 
-const smartTrim = (string: string, maxLength: number) => {
-    if (!string) return string;
-    if (maxLength < 1) return string;
-    if (string.length <= maxLength) return string;
-    if (maxLength == 1) return string.substring(0,1) + '...';
-
-    var midpoint = Math.ceil(string.length / 2);
-    var toremove = string.length - maxLength;
-    var lstrip = Math.ceil(toremove/2);
-    var rstrip = toremove - lstrip;
-    return string.substring(0, midpoint-lstrip) + '...' 
-    + string.substring(midpoint+rstrip);
-}
-
-const truncateString = (string: string, maxLength: number) => {
-    if (string.length > maxLength) {
-      return string.slice(0, maxLength) + "...";
-    } else {
-      return string;
-    }
-}
-
 export const useEtherStore = defineStore('ether',{
   state: () => ({
     account: '',
@@ -134,7 +112,7 @@ export const useEtherStore = defineStore('ether',{
     async setupNotifications(toast: any) {
         const messageBoxContract = await getContractInstance();
         messageBoxContract.on("MessageAdded", async (_index, content, author) => {
-            toast.success(`${smartTrim(author, 10)} said ${truncateString(content, 20)}`)
+            toast.success(`${author} posted ${content}`)
             await this.getAllMessages()
         }); 
     }

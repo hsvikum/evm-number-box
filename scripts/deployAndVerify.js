@@ -16,7 +16,7 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const arguments = ["Hello, World!. This is a simple message box."]
+  const arguments = [42]
   const MessageBox = await hre.ethers.getContractFactory("MessageBox");
   const messageBox = await MessageBox.deploy(...arguments);
 

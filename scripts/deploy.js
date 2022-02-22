@@ -17,7 +17,7 @@ async function main() {
 
   // We get the contract to deploy
   const MessageBox = await hre.ethers.getContractFactory("MessageBox");
-  const messageBox = await MessageBox.deploy("Hello, World!. This is a simple message box.");
+  const messageBox = await MessageBox.deploy(42);
 
   await messageBox.deployed();
 

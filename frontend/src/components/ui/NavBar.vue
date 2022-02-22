@@ -1,7 +1,7 @@
 <template>
   <div class="navbar bg-base-100">
     <div class="navbar-start">
-      <a class="btn btn-ghost normal-case text-xl">Message Box</a>
+      <a class="btn btn-ghost normal-case text-xl">Number Box</a>
     </div>
     <div class="navbar-end">
       <a class="btn" :class="{loading: loading}" v-if="props.wallet != ''">{{ props.wallet }}</a>

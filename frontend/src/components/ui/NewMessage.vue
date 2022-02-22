@@ -1,14 +1,14 @@
 <template>
   <div class="card w-auto bg-primary text-primary-content">
     <div class="card-body">
-      <h2 class="card-title">Write a New Message</h2>
+      <h2 class="card-title">Write a New Number</h2>
       <p>Whatever you write will stay in the blockchain forever 👽</p>
       <div>
-        <textarea
+        <input type="number"
           v-model="message"
-          class="textarea textarea-primary w-full"
-          placeholder="It's a wonderfull world"
-        ></textarea>
+          class="input input-bordered input-primary w-full"
+          placeholder="Only possitive numbers"
+        />
       </div>
       <div class="justify-end card-actions">
         <button
@@ -32,7 +32,7 @@ const { message, loading } = storeToRefs(useEtherStore());
 const { addMessage } = useEtherStore();
 
 const submittable = computed(() => {
-  return 0 < message.value.length && message.value.length <= 280 && !loading.value;
+  return parseInt(message.value) >= 0 && parseInt(message.value) < Number.MAX_SAFE_INTEGER && !loading.value;
 });
 
 const submit = async () => {
