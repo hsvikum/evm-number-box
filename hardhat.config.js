@@ -27,11 +27,16 @@ module.exports = {
     ropsten: {
       url: `${process.env.ROPSTEN_URL}`,
       accounts: [`0x${process.env.PRIVATE_KEY}`]
+    },
+    rinkeby: {
+      url: `${process.env.RINKEBY_URL}`,
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
     }
   },
   etherscan: {
     apiKey: {
-      ropsten: `${process.env.ETHERSCAN_API_KEY}`
+      ropsten: `${process.env.ETHERSCAN_API_KEY}`,
+      rinkeby: `${process.env.ETHERSCAN_API_KEY}`
     }
   }
 };
