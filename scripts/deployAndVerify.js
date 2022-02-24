@@ -24,6 +24,13 @@ async function main() {
 
   console.log("MessageBox deployed to:", messageBox.address);
 
+  console.log("Started verifying :", messageBox.address);
+  await hre.run("verify:verify", {
+    address: messageBox.address,
+    constructorArguments: [...arguments],
+  });
+  console.log("Done verifying :", messageBox.address);
+
   const { chainId } = await hre.ethers.provider.getNetwork();
 
   let contractMetaData = {
@@ -32,13 +39,6 @@ async function main() {
   }
 
   fs.writeFileSync(path.resolve(__dirname, '../frontend/artifacts/contractMetaData.json'), JSON.stringify(contractMetaData));
-
-  console.log("Started verifying :", messageBox.address);
-  await hre.run("verify:verify", {
-    address: messageBox.address,
-    constructorArguments: [...arguments],
-  });
-  console.log("Done verifying :", messageBox.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
