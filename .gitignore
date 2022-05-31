@@ -6,4 +6,5 @@ typechain
 
 #Hardhat files
 cache
-artifacts
+frontend/artifacts/@openzeppelin
+frontend/artifacts/build-info
